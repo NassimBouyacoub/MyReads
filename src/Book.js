@@ -1,6 +1,6 @@
-import React, { component } from "react";
+import React, { Component } from "react";
 
-export class Book extends component {
+class Book extends Component {
     render() {
         return (
             < li >
@@ -17,10 +17,12 @@ export class Book extends component {
                             </select>
                         </div>
                     </div>
-                    <div className="book-title">To Kill a Mockingbird</div>
+                    <div className="book-title">{this.props.name}</div>
                     <div className="book-authors">Harper Lee</div>
                 </div>
             </li >
         );
     }
 }
+
+export default Book

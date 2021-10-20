@@ -1,5 +1,6 @@
 import React from 'react'
 import * as BooksAPI from './BooksAPI'
+import { Link, Switch, BrowserRouter , Route} from "react-router-dom"
 import Shelfs from './Shelfs'
 import Search from './Search'
 import './App.css'
@@ -7,7 +8,7 @@ import './App.css'
 
 class BooksApp extends React.Component {
   state = {
-    books: [{ title: "haah" }],
+    books: [],
     /**
      * TODO: Instead of using this state variable to keep track of which page
      * we're on, use the URL in the browser's address bar. This will ensure that
@@ -35,22 +36,31 @@ class BooksApp extends React.Component {
   }
   render() {
     return (
-      <div className="app">
-        {this.state.showSearchPage ? (
-          <Search books={this.state.books} changeShelf={this.changeShelf}/>
-        ) : (
-          <div className="list-books">
-            <div className="list-books-title">
-              <h1>MyReads</h1>
-            </div>
-              <Shelfs book={this.state.books} changeShelf={this.changeShelf}/>
-            <div className="open-search">
-              <a onClick={() => this.setState({ showSearchPage: true })}>Add a book</a>
-            </div>
-          </div>
-        )
-        }
-      </div>
+      <BrowserRouter>
+        <div className="app">
+          <Switch>
+            <Route path='/search'
+              render={() => (
+
+                <Search books={this.state.books} changeShelf={this.changeShelf} />
+              )} />
+            <Route
+              exact
+              path="/"
+              render={() => (
+                <div className="list-books">
+                  <div className="list-books-title">
+                    <h1>MyReads</h1>
+                  </div>
+                  <Shelfs book={this.state.books} changeShelf={this.changeShelf} />
+                  <div className="open-search">
+                    <Link to="/search" />
+                  </div>
+                </div>
+              )} />
+          </Switch>
+        </div>
+      </BrowserRouter>
     )
   }
 }

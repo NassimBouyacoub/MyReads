@@ -6,63 +6,55 @@ import * as BooksAPI from './BooksAPI';
 class Search extends Component {
 
     state = {
-        query: '',
+        bookName: '',
         newBooks: [],
-        searchErr: false
+        Error: false
     };
 
     getBooks = event => {
-        const query = event.target.value;
-        this.setState({ query });
-
-        // if user input => run the search
-        if (query) {
-            BooksAPI.search(query.trim(), 20).then(books => {
+        const bookName = event.target.value;
+        this.setState({ bookName });
+        if (bookName) {
+            BooksAPI.search(bookName.trim(), 20).then(books => {
                 books.length > 0
-                    ? this.setState({ newBooks: books, searchErr: false })
-                    : this.setState({ newBooks: [], searchErr: true });
+                    ? this.setState({ newBooks: books, Error: false })
+                    : this.setState({ newBooks: [], Error: true });
             });
-
-            // if query is empty => reset state to default
-        } else this.setState({ newBooks: [], searchErr: false });
+        } else this.setState({ newBooks: [], Error: false });
     };
 
     render() {
-        const { query, newBooks, searchErr } = this.state;
-        const { books, changeShelf } = this.props;
-
         return (
             <div className="search-books">
                 <div className="search-books-bar">
                 <Link className="close-search" to='/'>Close</Link>
-
                     <div className="search-books-input-wrapper">
                         <input
                             type="text"
                             placeholder="Search by title or author"
-                            value={query}
+                            value={this.state.bookName}
                             onChange={this.getBooks}
                         />
                     </div>
                 </div>
                 <div className="search-books-results">
-                    {newBooks.length > 0 && (
+                    {this.state.newBooks.length > 0 && (
                         <div>
-                            <h3>Search returned {newBooks.length} books </h3>
+                            <h3>Search returned {this.state.newBooks.length} books </h3>
                             <ol className="books-grid">
-                                {newBooks.map(book => (
+                                {this.state.newBooks.map(book => (
                                     <Book
                                         book={book}
-                                        books={books}
+                                        books={this.props.books}
                                         key={book.id}
-                                        changeShelf={changeShelf}
+                                        changeShelf={this.props.changeShelf}
                                     />
                                 ))}
                             </ol>
                         </div>
                     )}
-                    {searchErr && (
-                        <h3>Search did not return any books. Please try again!</h3>
+                    {this.state.Error && (
+                        <h3>there is no book named {this.state.bookName}. Please try again!</h3>
                     )}
                 </div>
             </div>

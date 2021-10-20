@@ -10,6 +10,7 @@ class Shelf extends Component {
                     >
                         <Book
                             book={filtredBooks}
+                            books={book}
                             changeShelf={changeShelf}
                         />
                     </li>

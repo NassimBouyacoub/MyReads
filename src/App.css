@@ -5,14 +5,14 @@ body {
   line-height: 1.5;
 }
 body, .app {
-  background: white;
+  background: rgb(17, 17, 17);
 }
 
 /* main page */
 
 .list-books-title {
   padding: 10px 0;
-  background: #2e7c31;
+  background: #790000af;
   text-align: center;
 }
 .list-books-title h1 {
@@ -38,6 +38,7 @@ body, .app {
 
 .bookshelf-title {
   border-bottom: 1px solid #dedede;
+  color: white;
 }
 .bookshelf-books {
   text-align: center;
@@ -125,6 +126,7 @@ body, .app {
 .book-title,
 .book-authors {
   font-size: 0.8em;
+  color: white;
 }
 .book-title {
   margin-top: 10px;

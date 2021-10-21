@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from "react-router-dom"
 import Book from './Book';
 import * as BooksAPI from './BooksAPI';
+import PropTypes from 'prop-types'
 
 class Search extends Component {
 
@@ -27,7 +28,7 @@ class Search extends Component {
         return (
             <div className="search-books">
                 <div className="search-books-bar">
-                <Link className="close-search" to='/'>Close</Link>
+                    <Link className="close-search" to='/'>Close</Link>
                     <div className="search-books-input-wrapper">
                         <input
                             type="text"
@@ -60,5 +61,9 @@ class Search extends Component {
             </div>
         );
     }
+}
+Search.PropTypes = {
+    books: PropTypes.array.isRequired,
+    changeShelf: PropTypes.func.isRequired
 }
 export default Search;

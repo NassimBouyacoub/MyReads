@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import ChangeShelf from "./ChangeShelf";
-
+import PropTypes from 'prop-types'
 class Book extends Component {
     constructor(props) {
         super(props)
@@ -13,14 +13,14 @@ class Book extends Component {
         this.props.book.imageLinks && this.props.book.imageLinks.thumbnail
             ? this.props.book.imageLinks.thumbnail
             : null;
-    
+
     render() {
 
         return (
             <div className="book">
                 <div className="book-top">
                     <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${this.coverImg})` }}></div>
-                    <ChangeShelf book={this.props.book} changeShelf={this.props.changeShelf} books={this.props.books}/>
+                    <ChangeShelf book={this.props.book} changeShelf={this.props.changeShelf} books={this.props.books} />
                 </div>
                 <div className="book-title">{this.props.book.title}</div>
                 <div className="book-authors">{this.props.book['authors']}</div>
@@ -29,5 +29,9 @@ class Book extends Component {
         );
     }
 }
-
+Book.PropTypes = {
+    book: PropTypes.object.isRequired,
+    books: PropTypes.array.isRequired,
+    changeShelf: PropTypes.func.isRequired
+}
 export default Book

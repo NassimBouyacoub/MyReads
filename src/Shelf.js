@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import Book from "./Book";
+import PropTypes from 'prop-types'
 class Shelf extends Component {
     render() {
-        const { book, shelf, changeShelf} = this.props;
+        const { book, shelf, changeShelf } = this.props;
         return (
             <ol className="books-grid">
                 {book.filter((books => books.shelf === shelf)).map(filtredBooks =>
@@ -18,5 +19,9 @@ class Shelf extends Component {
             </ol>
         );
     }
+}
+Shelf.PropTypes = {
+    book: PropTypes.object.isRequired,
+    changeShelf: PropTypes.func.isRequired
 }
 export default Shelf;

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
 class ChangeShelf extends Component {
     constructor(props) {
@@ -16,7 +17,7 @@ class ChangeShelf extends Component {
         let currentShelf = "none"
         this.props.books.forEach(element => {
             if (element.id === this.props.book.id) {
-                currentShelf=element.shelf
+                currentShelf = element.shelf
             }
         });
         return (
@@ -31,5 +32,10 @@ class ChangeShelf extends Component {
             </div>
         );
     }
+}
+ChangeShelf.PropTypes = {
+    book: PropTypes.object.isRequired,
+    books: PropTypes.array.isRequired,
+    changeShelf: PropTypes.func.isRequired
 }
 export default ChangeShelf;

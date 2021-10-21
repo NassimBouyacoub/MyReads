@@ -22,7 +22,7 @@ class ChangeShelf extends Component {
         });
         return (
             <div className="book-shelf-changer">
-                <select value={this.value} onChange={this.updateShelf} defaultValue={currentShelf}>
+                <select value={currentShelf} onChange={this.updateShelf}>
                     <option value="move" disabled>Move to...</option>
                     <option value="none">None</option>
                     <option value="currentlyReading" >Currently Reading</option>
